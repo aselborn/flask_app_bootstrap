@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
     def __rep__(self):
         return f"User('{self.username}, {self.email}, {self.image_file}')"
     
-    # with app.app_context():
-    #    db.create_all()
+    with app.app_context():
+       db.create_all()
 
 
 class Post(db.Model):
@@ -31,6 +31,6 @@ class Post(db.Model):
     def __rep__(self):
         return f"User('{self.title}, {self.date_posted}')"
     
-    # with app.app_context():
-    #    db.create_all() 
+    with app.app_context():
+        db.create_all() 
 
