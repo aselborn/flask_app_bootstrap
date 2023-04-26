@@ -14,16 +14,10 @@ login_manager = LoginManager()
 login_manager.login_view = 'users.login' # function name of the route - blueprint för users
 login_manager.login_message_category = 'info' # maps to bootstrap ?
 
-
 mail = Mail()
-
 
 def create_app(config_class=Config):
     app = Flask(__name__)
-
-    with app.app_context():
-        app.app_context().push()
-        
     app.config.from_object(Config)
 
     db.init_app(app)
@@ -40,7 +34,9 @@ def create_app(config_class=Config):
     app.register_blueprint(posts)
     app.register_blueprint(main)
 
+    with app.app_context():
+        db.create_all()
     
-
+    
     return app 
 

@@ -4,7 +4,7 @@ from flaskblog import db, login_manager
 from flask import current_app
 from flask_login import UserMixin
 
-
+        
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -36,8 +36,8 @@ class User(db.Model, UserMixin):
         return f"User('{self.username}, {self.email}, {self.image_file}')"
     
 
-    with current_app.app_context():
-       db.create_all()
+    # with current_app.app_context():
+    #    db.create_all()
 
 
 class Post(db.Model):
@@ -50,6 +50,6 @@ class Post(db.Model):
     def __rep__(self):
         return f"User('{self.title}, {self.date_posted}')"
     
-    with current_app.app_context():
-        db.create_all() 
+    # with current_app.app_context():
+    #     db.create_all() 
 
